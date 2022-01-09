@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AppDeReceitasContext from './AppDeReceitasContext';
 
 const AppDeReceitasProveider = ({ children }) => {
+  const [isLoading, setLoading] = useState(false);
   const [filter, setFilter] = useState('i');
   const [recipe, setRecipe] = useState({});
   const [searchInput, setSearchInput] = useState('');
@@ -20,6 +21,8 @@ const AppDeReceitasProveider = ({ children }) => {
     }
   };
   const context = {
+    isLoading,
+    setLoading,
     recipe,
     setRecipe,
     setRender,
