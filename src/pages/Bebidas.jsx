@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import useCategoryDrinks from '../hooks/useCategoryDrinks';
+import './style/Bebidas.css';
 
 function Bebidas() {
   const searchFilter = 'search.php?s=';
@@ -35,29 +36,32 @@ function Bebidas() {
   return (
     <div className="Bebidas-content">
       <Header titlePage="Bebidas" />
-      {
-        drinksCategories.slice(0, FIVE).map((drink) => (
-          <button
-            data-testid={ `${drink.strCategory}-category-filter` }
-            type="button"
-            onClick={ () => ((filterUsed === searchFilter
+      <div className="categories-drink-container">
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setFilterUsed(searchFilter) }
+        >
+          All
+        </button>
+        {
+          drinksCategories.slice(0, FIVE).map((drink) => (
+            <button
+              data-testid={ `${drink.strCategory}-category-filter` }
+              type="button"
+              onClick={ () => ((filterUsed === searchFilter
               || filterUsed !== `filter.php?c=${drink.strCategory}`)
-              ? setFilterUsed(`filter.php?c=${drink.strCategory}`)
-              : setFilterUsed(searchFilter)) }
-            key={ drink.strCategory }
-          >
-            {drink.strCategory}
-          </button>
-        ))
-      }
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => setFilterUsed(searchFilter) }
-      >
-        All
-      </button>
-      {render
+                ? setFilterUsed(`filter.php?c=${drink.strCategory}`)
+                : setFilterUsed(searchFilter)) }
+              key={ drink.strCategory }
+            >
+              {drink.strCategory}
+            </button>
+          ))
+        }
+      </div>
+      <div className="cards-container">
+        {render
         && render.map((e, i) => {
           if (i < TWELVE) {
             return (
@@ -74,6 +78,7 @@ function Bebidas() {
           }
           return ('');
         })}
+      </div>
       <Footer />
     </div>
   );

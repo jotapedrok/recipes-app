@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
+import './style/Login.css';
 
 function Login() {
   const history = useHistory();
@@ -26,32 +27,38 @@ function Login() {
   }
 
   return (
-    <form
-      onSubmit={ (e) => {
-        e.preventDefault();
-        startLocalStorage();
-      } }
-    >
-      <input
-        type="email"
-        value={ userEmail }
-        data-testid="email-input"
-        onChange={ (e) => setUserEmail(e.target.value) }
-      />
-      <input
-        type="password"
-        value={ userPassword }
-        data-testid="password-input"
-        onChange={ (e) => setUserPassword(e.target.value) }
-      />
-      <button
-        type="submit"
-        data-testid="login-submit-btn"
-        disabled={ validationLogin() }
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
+      <form
+        onSubmit={ (e) => {
+          e.preventDefault();
+          startLocalStorage();
+        } }
+        className="form-login"
       >
-        Entrar
-      </button>
-    </form>
+        <input
+          type="email"
+          value={ userEmail }
+          data-testid="email-input"
+          onChange={ (e) => setUserEmail(e.target.value) }
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          value={ userPassword }
+          data-testid="password-input"
+          onChange={ (e) => setUserPassword(e.target.value) }
+          placeholder="Senha"
+        />
+        <button
+          type="submit"
+          data-testid="login-submit-btn"
+          disabled={ validationLogin() }
+        >
+          Entrar
+        </button>
+      </form>
+    </div>
   );
 }
 

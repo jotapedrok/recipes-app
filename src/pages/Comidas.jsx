@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import useCategoryMeals from '../hooks/useCategoryMeals';
+import './style/Comidas.css';
 
 function Comidas() {
   const searchFilter = 'search.php?s=';
@@ -36,29 +37,32 @@ function Comidas() {
   return (
     <div>
       <Header titlePage="Comidas" />
-      {
-        mealsCategories.slice(0, FIVE).map((meal) => (
-          <button
-            data-testid={ `${meal.strCategory}-category-filter` }
-            type="button"
-            onClick={ () => ((filterUsed === searchFilter
+      <div className="categories-container">
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setFilterUsed(searchFilter) }
+        >
+          All
+        </button>
+        {
+          mealsCategories.slice(0, FIVE).map((meal) => (
+            <button
+              data-testid={ `${meal.strCategory}-category-filter` }
+              type="button"
+              onClick={ () => ((filterUsed === searchFilter
               || filterUsed !== `filter.php?c=${meal.strCategory}`)
-              ? setFilterUsed(`filter.php?c=${meal.strCategory}`)
-              : setFilterUsed(searchFilter)) }
-            key={ meal.strCategory }
-          >
-            {meal.strCategory}
-          </button>
-        ))
-      }
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => setFilterUsed(searchFilter) }
-      >
-        All
-      </button>
-      {render
+                ? setFilterUsed(`filter.php?c=${meal.strCategory}`)
+                : setFilterUsed(searchFilter)) }
+              key={ meal.strCategory }
+            >
+              {meal.strCategory}
+            </button>
+          ))
+        }
+      </div>
+      <div className="cards-container">
+        {render
         && render.map((e, i) => {
           if (i < TWELVE) {
             return (
@@ -75,6 +79,7 @@ function Comidas() {
           }
           return ('');
         })}
+      </div>
       <Footer />
     </div>
   );

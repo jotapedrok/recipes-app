@@ -1,0 +1,18 @@
+.explorer-container {
+  display: flex;
+  flex-direction: column;
+  margin: 23px 18px 0 15px;
+}
+
+.explorer-container button {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 32px;
+  height: 82px;
+  line-height: 37px;
+  margin-bottom: 33px;
+  padding: 15px 5px 0;
+  text-align: left;
+  width: 327px;
+}
