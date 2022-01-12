@@ -1,7 +1,52 @@
 .header-img {
+  border-radius: none;
+  height: 155px;
+  object-fit: cover;
   width: 100vw;
 }
 
 .icon-img {
+  height: 26px;
+  margin-right: 11px;
   pointer-events: none;
+  width: 26px;
+}
+
+.icons-content button {
+  border: none;
+}
+
+.header-recipe-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 8px 0;
+}
+
+.recipe-header-text h2 {
+  font-size: 30px;
+  line-height: 35px;
+  margin: 0;
+}
+
+.recipe-header-text h4 {
+  color: darkgray;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+.recipe-header-text {
+  max-width: 260px;
+}
+
+button:focus {
+  border: none;
+  outline: none;
+}
+
+.copied-link {
+  background-color: #d3cfcf;
+  border-radius: 15px;
+  padding: 5px;
+  position: absolute;
+  right: 15px;
 }

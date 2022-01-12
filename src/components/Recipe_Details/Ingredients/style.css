@@ -1,0 +1,17 @@
+.ingredients-content {
+  background-color: #ececec;
+  font-size: 21px;
+  line-height: 25px;
+  width: 341px;
+}
+
+.ingredients-content h2 {
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.ingredients-content ul {
+  list-style-position: inside;
+  list-style-type: none;
+  margin: 8px 0 12px 11px;
+}

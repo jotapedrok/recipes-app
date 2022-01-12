@@ -6,19 +6,11 @@
   width: 90vw;
 }
 
-.recommended-content .recomendation-card-content {
-  align-items: center;
-  border: solid black 1px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 5px;
+.recommended-container {
+  margin: 15px 12px;
 }
 
-.recommended-content .recomendation-card-content img {
-  border-radius: 10px;
-  margin: 5px;
-  width: 140px;
+.recommended-container h2 {
+  font-size: 26px;
+  line-height: 30px;
 }
-

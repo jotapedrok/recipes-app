@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 export default function Ingredients({ ingredients }) {
   return (
@@ -12,7 +13,9 @@ export default function Ingredients({ ingredients }) {
               key={ i }
               data-testid={ `${i}-ingredient-name-and-measure` }
             >
-              {e}
+              <strong className="trail">-</strong>
+              {' '}
+              { e }
             </li>
           ))}
         </ul>

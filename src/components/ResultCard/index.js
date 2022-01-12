@@ -6,7 +6,7 @@ export default function ResultCard({ index, name, image, type }) {
   return (
     <div
       data-testid={ `${index}-${type}-card` }
-      className={ `card ${type}-card-content` }
+      className={ `${type}-card-content` }
     >
       <img
         src={ image }

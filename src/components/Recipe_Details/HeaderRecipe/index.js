@@ -31,16 +31,18 @@ export default function HeaderRecipe({ image, title, subtitle, typeRecipe }) {
         alt={ title }
       />
       <div className="header-recipe-content">
-        <h2
-          data-testid="recipe-title"
-        >
-          { title }
-        </h2>
-        <h4
-          data-testid="recipe-category"
-        >
-          { subtitle }
-        </h4>
+        <div className="recipe-header-text">
+          <h2
+            data-testid="recipe-title"
+          >
+            { title }
+          </h2>
+          <h4
+            data-testid="recipe-category"
+          >
+            { subtitle }
+          </h4>
+        </div>
         <Buttons
           typeRecipe={ typeRecipe }
           isFavorite={ isFavorite }

@@ -1,4 +1,4 @@
-.card {
+.recipe-card-content {
   border-radius: 6px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -9,7 +9,7 @@
   width: 162px;
 }
 
-.card p {
+.recipe-card-content p {
   color: black;
   font-size: 18px;
   margin: 0 0 12px 5px;
@@ -20,4 +20,22 @@ img {
   height: 109px;
   object-fit: cover;
   width: 100%;
+}
+
+.recomendation-card-content p {
+  color: black;
+  font-size: 18px;
+  margin: 0 0 12px 5px;
+}
+
+.recomendation-card-content {
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 172px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-left: 8px;
+  min-width: 162px;
 }
