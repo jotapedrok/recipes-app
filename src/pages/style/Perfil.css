@@ -1,0 +1,21 @@
+.profile-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  justify-content: center;
+  line-height: 35px;
+  margin: 53px 16px 0;
+}
+
+.profile-button {
+  background-color: #c4c4c4;
+  border: none;
+  height: 53px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.profile-email {
+  margin-bottom: 38px;
+}
