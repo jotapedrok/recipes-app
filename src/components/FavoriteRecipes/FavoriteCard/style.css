@@ -1,4 +1,57 @@
 .favorite-card-image {
-  height: 100px;
-  width: 100px;
+  height: 143px;
+  width: 165px;
+}
+
+.favorite-card-header {
+  margin: 7px 5px;
+}
+
+.favorite-card-header h3 {
+  color: black;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+.favorite-card-header h5 {
+  color: darkgray;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.favorite-card-container {
+  border: 1px solid #f8eded;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 143px;
+  margin: 0 auto 19px;
+  width: 333px;
+}
+
+.favorite-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 37px 28px 31px;
+}
+
+.favorite-card-buttons button {
+  border: none;
+}
+
+.favorite-card-buttons button:focus {
+  border: none;
+  outline: none;
+}
+
+.favorite-card-buttons img {
+  height: 31px;
+  width: 31px;
+}
+
+.favorite-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
