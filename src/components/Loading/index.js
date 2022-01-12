@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import drinkIcon from '../../images/drinkIcon.svg';
 import mealIcon from '../../images/mealIcon.svg';
 import asianFood from '../../images/loadingIcons/asian-food.png';
@@ -14,12 +14,13 @@ import sparklingWater from '../../images/loadingIcons/sparkling-water.png';
 import './style.css';
 
 export default function Loading() {
+  const refInterval = useRef();
   const changeImage = () => {
     const TIME = 2000;
     const icons = document.getElementsByClassName('icon');
     const max = icons.length;
     let index = 0;
-    setInterval(() => {
+    refInterval.current = setInterval(() => {
       icons[index].classList.remove('active');
       index += 1;
       if (index >= max) {
@@ -31,6 +32,10 @@ export default function Loading() {
 
   useEffect(() => {
     changeImage();
+  }, []);
+
+  useEffect(() => () => {
+    clearInterval(refInterval.current);
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import useCategoryMeals from '../hooks/useCategoryMeals';
+import { fetchMealApi } from '../services/fetchAPI';
 import './style/Comidas.css';
 
 function Comidas() {
@@ -18,7 +19,8 @@ function Comidas() {
   const { render,
     setRender,
     isFilterByIngredient,
-    setLoading } = useContext(AppDeReceitasContext);
+    setLoading,
+  } = useContext(AppDeReceitasContext);
 
   const URL = `https://www.themealdb.com/api/json/v1/1/${filterUsed}`;
   const fetchMeals = async () => {
@@ -33,9 +35,17 @@ function Comidas() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsed]);
 
-  // useEffect(() => {
-  //   // setLoading(false);
-  // }, []);
+  const startPage = async () => {
+    if (!isFilterByIngredient) {
+      const result = await fetchMealApi('s', '');
+      await setRender(result.meals);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    startPage();
+  }, []);
 
   useCategoryMeals(setMealsCategories);
 
