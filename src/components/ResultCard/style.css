@@ -15,7 +15,14 @@
   margin: 0 0 12px 5px;
 }
 
-img {
+.recipe-card-content img {
+  border-radius: 6px 6px 0 0;
+  height: 109px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.recomendation-card-content img {
   border-radius: 6px 6px 0 0;
   height: 109px;
   object-fit: cover;
