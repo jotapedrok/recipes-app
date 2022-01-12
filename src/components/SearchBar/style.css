@@ -17,6 +17,10 @@
   width: 342px;
 }
 
+.search-input:disabled {
+  background-color: darkgray;
+}
+
 .filters-inputs-container {
   align-items: center;
   display: flex;
@@ -34,6 +38,15 @@
 .radio-input {
   appearance: none;
   background-color: #c4c4c4;
+  border: none;
+  border-radius: 50%;
+  height: 21px;
+  margin: 0 6px 0 0;
+  width: 20px;
+}
+
+.radio-input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='21' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z'/%3E%3C/svg%3E");
   border: none;
   border-radius: 50%;
   height: 21px;

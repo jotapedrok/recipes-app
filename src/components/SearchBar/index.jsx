@@ -70,6 +70,7 @@ export default function Search() {
             name="filter"
             data-testid="ingredient-search-radio"
             className="radio-input"
+            checked={ filter === 'i' }
           />
           Ingredientes
         </label>
