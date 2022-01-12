@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppDeReceitasContext from '../../../Context/AppDeReceitasContext';
+import './style.css';
 
 export default function FinishRecipeButton({ isAble, type }) {
   const { push } = useHistory();
@@ -33,14 +34,17 @@ export default function FinishRecipeButton({ isAble, type }) {
   };
 
   return (
-    <button
-      type="button"
-      data-testid="finish-recipe-btn"
-      disabled={ !isAble }
-      onClick={ handleClick }
-    >
-      Finalizar Receita
-    </button>
+    <div className="button-div">
+      <button
+        type="button"
+        data-testid="finish-recipe-btn"
+        disabled={ !isAble }
+        onClick={ handleClick }
+        className="recipe-finish-button"
+      >
+        Finalizar Receita
+      </button>
+    </div>
   );
 }
 
