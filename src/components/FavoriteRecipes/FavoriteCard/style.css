@@ -1,5 +1,6 @@
 .favorite-card-image {
   height: 143px;
+  object-fit: cover;
   width: 165px;
 }
 
