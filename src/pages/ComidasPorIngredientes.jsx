@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import { fetchIngredients, fetchMealApi } from '../services/fetchAPI';
+import './style/ExplorarPorIngredientes.css';
 
 function ComidasPorIngredientes() {
   const TWENTY = 20;
@@ -37,7 +38,8 @@ function ComidasPorIngredientes() {
   return (
     <div className="ComidasPorIngredientes-content">
       <Header showSearch={ false } titlePage="Explorar Ingredientes" />
-      { ingredients
+      <div className="ingredients-container">
+        { ingredients
         && ingredients.map((ingredient, i) => {
           const ingredientName = ingredient.strIngredient;
           if (i < TWELVE) {
@@ -57,6 +59,7 @@ function ComidasPorIngredientes() {
           }
           return ('');
         }) }
+      </div>
       <Footer />
     </div>
   );

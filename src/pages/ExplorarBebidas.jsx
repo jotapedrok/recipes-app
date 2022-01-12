@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import './style/ExplorarBebidasEComidas.css';
 
 function ExplorarBebidas() {
   const [idDrinkRandom, setIdDrinkRandom] = useState();
@@ -25,21 +26,23 @@ function ExplorarBebidas() {
   return (
     <div className="ExplorarBebidas-content">
       <Header showSearch={ false } titlePage="Explorar Bebidas" />
-      <Link to="/explorar/bebidas/ingredientes">
+      <div className="explorer-btns-container">
+        <Link to="/explorar/bebidas/ingredientes">
+          <button
+            data-testid="explore-by-ingredient"
+            type="button"
+          >
+            Por Ingredientes
+          </button>
+        </Link>
         <button
-          data-testid="explore-by-ingredient"
+          data-testid="explore-surprise"
           type="button"
+          onClick={ handleClick }
         >
-          Por Ingredientes
+          Me Surpreenda!
         </button>
-      </Link>
-      <button
-        data-testid="explore-surprise"
-        type="button"
-        onClick={ handleClick }
-      >
-        Me Surpreenda!
-      </button>
+      </div>
       <Footer />
     </div>
   );
