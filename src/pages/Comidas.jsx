@@ -17,12 +17,13 @@ function Comidas() {
 
   const { render,
     setRender,
-    isFilterByIngredient } = useContext(AppDeReceitasContext);
+    isFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const URL = `https://www.themealdb.com/api/json/v1/1/${filterUsed}`;
   const fetchMeals = async () => {
     const { meals } = await fetch(URL).then((response) => response.json());
-    setRender(meals);
+    await setRender(meals);
   };
 
   useEffect(() => {
@@ -31,6 +32,10 @@ function Comidas() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsed]);
+
+  // useEffect(() => {
+  //   // setLoading(false);
+  // }, []);
 
   useCategoryMeals(setMealsCategories);
 

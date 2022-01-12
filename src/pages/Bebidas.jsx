@@ -18,7 +18,8 @@ function Bebidas() {
 
   const { render,
     setRender,
-    isFilterByIngredient } = useContext(AppDeReceitasContext);
+    isFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const fetchDrinks = async () => {
     const { drinks } = await fetch(URL).then((response) => response.json());
@@ -30,6 +31,10 @@ function Bebidas() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsed]);
+
+  useEffect(() => () => {
+    setLoading(true);
+  });
 
   useCategoryDrinks(setDrinksCategories);
 

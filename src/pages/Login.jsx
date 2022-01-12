@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import './style/Login.css';
+import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 
 function Login() {
   const history = useHistory();
@@ -9,12 +10,18 @@ function Login() {
   const [userPassword, setUserPassword] = useState('');
   const SIX = 6;
 
+  const { setLoading } = useContext(AppDeReceitasContext);
+
   function validationLogin() {
     const regexLogin = /\S+@\S+\.\S+/;
     return !((regexLogin.test(userEmail) && userPassword.length > SIX));
   }
 
   const inProgressObj = { cocktails: {}, meals: {} };
+
+  useEffect(() => () => {
+    setLoading(true);
+  }, []);
 
   function startLocalStorage() {
     localStorage.setItem('mealsToken', '1');
