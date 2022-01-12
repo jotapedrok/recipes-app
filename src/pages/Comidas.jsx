@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import useCategoryMeals from '../hooks/useCategoryMeals';
-import { fetchMealApi } from '../services/fetchAPI';
 import './style/Comidas.css';
 
 function Comidas() {
@@ -15,6 +14,7 @@ function Comidas() {
   const [filterUsed, setFilterUsed] = useState(searchFilter);
   const FIVE = 5;
   const TWELVE = 12;
+  const ONE_SECOND = 1000;
 
   const { render,
     setRender,
@@ -26,6 +26,9 @@ function Comidas() {
   const fetchMeals = async () => {
     const { meals } = await fetch(URL).then((response) => response.json());
     await setRender(meals);
+    setTimeout(() => {
+      setLoading(false);
+    }, ONE_SECOND);
   };
 
   useEffect(() => {
@@ -35,16 +38,8 @@ function Comidas() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsed]);
 
-  const startPage = async () => {
-    if (!isFilterByIngredient) {
-      const result = await fetchMealApi('s', '');
-      await setRender(result.meals);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    startPage();
+  useEffect(() => () => {
+    setLoading(true);
   }, []);
 
   useCategoryMeals(setMealsCategories);

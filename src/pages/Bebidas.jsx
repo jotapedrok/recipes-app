@@ -13,6 +13,7 @@ function Bebidas() {
   const [filterUsed, setFilterUsed] = useState(searchFilter);
   const TWELVE = 12;
   const FIVE = 5;
+  const TWO_SECONDS = 2000;
 
   const URL = `https://www.thecocktaildb.com/api/json/v1/1/${filterUsed}`;
 
@@ -23,7 +24,10 @@ function Bebidas() {
 
   const fetchDrinks = async () => {
     const { drinks } = await fetch(URL).then((response) => response.json());
-    setRender(drinks);
+    await setRender(drinks);
+    setTimeout(() => {
+      setLoading(false);
+    }, TWO_SECONDS);
   };
   useEffect(() => {
     if (!isFilterByIngredient) {
@@ -34,7 +38,7 @@ function Bebidas() {
 
   useEffect(() => () => {
     setLoading(true);
-  });
+  }, []);
 
   useCategoryDrinks(setDrinksCategories);
 
