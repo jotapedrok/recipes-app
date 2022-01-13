@@ -26,9 +26,13 @@ function ExplorarComidas() {
 
   useEffect(() => {
     fetchMealRandom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ExplorarComidas-content">

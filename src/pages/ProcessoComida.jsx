@@ -37,9 +37,13 @@ function ProcessoComida() {
 
   useEffect(() => {
     getRecipe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ProcessoComida-content">

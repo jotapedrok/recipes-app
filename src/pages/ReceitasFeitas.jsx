@@ -24,9 +24,13 @@ function ReceitasFeitas() {
 
   useEffect(() => {
     getDones();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function copyRecipeLink(pathDetail) {
     const link = `http://localhost:3000${pathDetail}`;

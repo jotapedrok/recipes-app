@@ -46,6 +46,7 @@ function DetalhesBebida() {
 
   useEffect(() => {
     getRecipe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -58,9 +59,13 @@ function DetalhesBebida() {
       && inProgressRecipes.cocktails[params.id]) {
       setButtomText('Continuar Receita');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donedRecipes, inProgressRecipes]);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();

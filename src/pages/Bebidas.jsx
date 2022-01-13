@@ -39,6 +39,7 @@ function Bebidas() {
 
   useEffect(() => () => {
     setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useCategoryDrinks(setDrinksCategories);

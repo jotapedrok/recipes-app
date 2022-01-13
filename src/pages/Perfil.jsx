@@ -20,6 +20,7 @@ function Perfil() {
 
   useEffect(() => {
     getEmail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const resetLocalStorage = () => {
@@ -32,7 +33,10 @@ function Perfil() {
     history.push('/');
   };
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="profile-container">

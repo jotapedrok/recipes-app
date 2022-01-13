@@ -18,6 +18,7 @@ function ReceitasFavoritas() {
 
   useEffect(() => {
     getFavorites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const changeFilter = async () => {
@@ -35,9 +36,13 @@ function ReceitasFavoritas() {
 
   useEffect(() => {
     changeFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ReceitasFavoritas-content">

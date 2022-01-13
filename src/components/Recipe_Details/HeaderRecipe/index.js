@@ -20,6 +20,7 @@ export default function HeaderRecipe({ image, title, subtitle, typeRecipe }) {
 
   useEffect(() => {
     testFavorite();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

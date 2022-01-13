@@ -26,6 +26,7 @@ function ComidasPorIngredientes() {
 
   useEffect(() => {
     getIngredients();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { replace } = useHistory();
@@ -38,7 +39,10 @@ function ComidasPorIngredientes() {
     replace('/comidas');
   };
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ComidasPorIngredientes-content">

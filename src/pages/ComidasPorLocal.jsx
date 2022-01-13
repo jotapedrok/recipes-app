@@ -33,6 +33,7 @@ function ComidasPorLocal() {
 
   useEffect(() => {
     starterPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
@@ -45,7 +46,10 @@ function ComidasPorLocal() {
     }
   };
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ComidasPorLocal-content">

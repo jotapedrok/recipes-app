@@ -10,10 +10,12 @@ function Explorar() {
   useEffect(() => {
     setLoading(true);
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => () => {
     setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="Explorar-content">

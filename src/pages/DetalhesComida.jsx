@@ -58,9 +58,13 @@ function DetalhesComida() {
       && inProgressRecipes.meals[params.id]) {
       setButtomText('Continuar Receita');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => () => { setLoading(true); }, []);
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();

@@ -41,6 +41,7 @@ function Comidas() {
 
   useEffect(() => () => {
     setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useCategoryMeals(setMealsCategories);
