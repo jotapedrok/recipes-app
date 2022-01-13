@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import './style/Perfil.css';
 
 function Perfil() {
   const [email, setEmail] = useState();
   const history = useHistory();
+
+  const { setLoading } = useContext(AppDeReceitasContext);
+
   const getEmail = async () => {
+    setLoading(true);
     const emailObj = await JSON.parse(localStorage.getItem('user'));
     setEmail(emailObj.email);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -25,6 +31,8 @@ function Perfil() {
     localStorage.removeItem('user');
     history.push('/');
   };
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="profile-container">
