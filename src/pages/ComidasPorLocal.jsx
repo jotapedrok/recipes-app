@@ -12,7 +12,7 @@ function ComidasPorLocal() {
 
   const [areas, setAreas] = useState([]);
 
-  const { setRender, render } = useContext(AppDeReceitasContext);
+  const { setRender, render, setLoading } = useContext(AppDeReceitasContext);
 
   const getAreas = async () => {
     const ingr = await fetchAreas();
@@ -24,9 +24,15 @@ function ComidasPorLocal() {
     setRender(meals);
   };
 
+  const starterPage = async () => {
+    setLoading(true);
+    await getAreas();
+    await getRecipes('s', '');
+    setLoading(false);
+  };
+
   useEffect(() => {
-    getAreas();
-    getRecipes('s', '');
+    starterPage();
   }, []);
 
   const handleChange = (e) => {
@@ -38,6 +44,8 @@ function ComidasPorLocal() {
       getRecipes('a', value);
     }
   };
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="ComidasPorLocal-content">
