@@ -34,7 +34,7 @@
 .done-recipes-buttons {
   display: flex;
   justify-content: space-between;
-  margin: 18px 17px 22px;
+  margin: 18px auto 22px;
   width: 326px;
 }
 
