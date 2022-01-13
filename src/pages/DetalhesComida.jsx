@@ -85,18 +85,20 @@ function DetalhesComida() {
     <div className="DetalhesComida-container">
       {recipe !== {} && (
         <div className="details-food-content">
-          <HeaderRecipe
-            typeRecipe={ ['Meal', 'comida'] }
-            image={ recipe.strMealThumb }
-            title={ recipe.strMeal }
-            subtitle={ recipe.strCategory }
-          />
-          <Ingredients
-            ingredients={ recipeIngredients }
-          />
-          <Instructions instructionsText={ recipe.strInstructions } />
-          <Video link={ recipe.strYoutube } />
-          <Recommended gender="drinks" recipes={ recommendeds } />
+          <div className="recipe-content">
+            <HeaderRecipe
+              typeRecipe={ ['Meal', 'comida'] }
+              image={ recipe.strMealThumb }
+              title={ recipe.strMeal }
+              subtitle={ recipe.strCategory }
+            />
+            <Ingredients
+              ingredients={ recipeIngredients }
+            />
+            <Instructions instructionsText={ recipe.strInstructions } />
+            <Video link={ recipe.strYoutube } />
+            <Recommended gender="drinks" recipes={ recommendeds } />
+          </div>
           { showButton && (
             <button
               className="btn-start-recipe"

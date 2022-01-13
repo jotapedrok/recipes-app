@@ -9,17 +9,20 @@ export default function FinishRecipeButton({ isAble, type }) {
 
   const { recipe } = useContext(AppDeReceitasContext);
 
-  const createDonedObj = (t) => ({
-    id: recipe[`id${t}`],
-    type: type === 'Meal' ? 'comida' : 'bebida',
-    area: recipe.strArea || '',
-    category: recipe.strCategory || '',
-    alcoholicOrNot: recipe.strAlcoholic || '',
-    name: recipe[`str${type}`],
-    image: recipe[`str${type}Thumb`],
-    doneDate: new Date().toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
-    tags: recipe.strTags ? [recipe.strTags] : [],
-  });
+  const createDonedObj = (t) => {
+    const arrayTags = recipe.strTags ? recipe.strTags.split(', ') : [];
+    return ({
+      id: recipe[`id${t}`],
+      type: type === 'Meal' ? 'comida' : 'bebida',
+      area: recipe.strArea || '',
+      category: recipe.strCategory || '',
+      alcoholicOrNot: recipe.strAlcoholic || '',
+      name: recipe[`str${type}`],
+      image: recipe[`str${type}Thumb`],
+      doneDate: new Date().toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
+      tags: [...arrayTags],
+    });
+  };
 
   const handleClick = () => {
     const donedObj = createDonedObj(type);

@@ -86,17 +86,19 @@ function DetalhesBebida() {
     <div className="details-drink-container">
       {recipe !== {} && (
         <div className="details-food-content">
-          <HeaderRecipe
-            typeRecipe={ ['Drink', 'bebida'] }
-            image={ recipe.strDrinkThumb }
-            title={ recipe.strDrink }
-            subtitle={ `${recipe.strCategory} - ${recipe.strAlcoholic}` }
-          />
-          <Ingredients
-            ingredients={ recipeIngredients }
-          />
-          <Instructions instructionsText={ recipe.strInstructions } />
-          <Recommended gender="meals" recipes={ recommendeds } />
+          <div className="recipe-content">
+            <HeaderRecipe
+              typeRecipe={ ['Drink', 'bebida'] }
+              image={ recipe.strDrinkThumb }
+              title={ recipe.strDrink }
+              subtitle={ `${recipe.strCategory} - ${recipe.strAlcoholic}` }
+            />
+            <Ingredients
+              ingredients={ recipeIngredients }
+            />
+            <Instructions instructionsText={ recipe.strInstructions } />
+            <Recommended gender="meals" recipes={ recommendeds } />
+          </div>
           { showButton && (
             <button
               className="btn-start-recipe"

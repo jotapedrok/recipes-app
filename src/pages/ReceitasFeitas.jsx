@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
+// import { fetchMealApi } from '../services/fetchAPI';
 import './style/ReceitasFeitas.css';
 
 function ReceitasFeitas() {
@@ -38,6 +39,11 @@ function ReceitasFeitas() {
     setShowIsCopy(true);
     setTimeout(() => setShowIsCopy(false), TWO_SECONDS);
   }
+
+  // const tagClick = async ({ target }) => {
+  //   const { meals } = await fetchMealApi('s', '');
+  //   meals.filter((e) => e.strTags === e);
+  // };
 
   return (
     <div className="ReceitasFeitas-content">
@@ -130,14 +136,15 @@ function ReceitasFeitas() {
                 <div className="done-recipes-tags">
                   { recipe.tags
                     .map((tag) => (
-                      <button
-                        className="tag-button"
-                        type="button"
-                        key={ tag }
-                        data-testid={ `${index}-${tag}-horizontal-tag` }
-                      >
-                        { tag }
-                      </button>))}
+                      <div key={ tag } className="tag-div">
+                        <p
+                          className="tag"
+                          data-testid={ `${index}-${tag}-horizontal-tag` }
+                        >
+                          { tag }
+                        </p>
+                      </div>
+                    ))}
                 </div>
               )}
             </div>

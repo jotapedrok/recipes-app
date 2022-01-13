@@ -47,21 +47,23 @@ function ProcessoBebida() {
 
   return (
     <div className="ProcessoComida-content">
-      <HeaderRecipe
-        typeRecipe={ ['Drink', 'bebida'] }
-        image={ recipe.strDrinkThumb }
-        title={ recipe.strDrink }
-        subtitle={ recipe.strCategory }
-      />
-      <IngredientsInProgress
-        ingredients={ recipeIngredients }
-        type="cocktails"
-        checkeds={ checkeds }
-        setCheckeds={ setCheckeds }
-      />
-      <Instructions
-        instructionsText={ recipe.strInstructions }
-      />
+      <div className="recipe-content">
+        <HeaderRecipe
+          typeRecipe={ ['Drink', 'bebida'] }
+          image={ recipe.strDrinkThumb }
+          title={ recipe.strDrink }
+          subtitle={ recipe.strCategory }
+        />
+        <IngredientsInProgress
+          ingredients={ recipeIngredients }
+          type="cocktails"
+          checkeds={ checkeds }
+          setCheckeds={ setCheckeds }
+        />
+        <Instructions
+          instructionsText={ recipe.strInstructions }
+        />
+      </div>
       <FinishRecipeButton
         isAble={ recipeIngredients.length === checkeds }
         type="Drink"

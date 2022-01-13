@@ -14,7 +14,11 @@ function Perfil() {
   const getEmail = async () => {
     setLoading(true);
     const emailObj = await JSON.parse(localStorage.getItem('user'));
-    setEmail(emailObj.email);
+    if (emailObj) {
+      setEmail(emailObj.email);
+    } else {
+      history.push('/');
+    }
     setLoading(false);
   };
 

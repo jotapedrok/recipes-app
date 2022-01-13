@@ -34,6 +34,12 @@ function Login() {
     history.push('/comidas');
   }
 
+  useEffect(() => {
+    setLoading(true);
+    setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="login-container">
       <h1 className="login-title">Login</h1>
