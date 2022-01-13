@@ -1,7 +1,8 @@
 .filters-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 18px auto 22px;
+  width: 326px;
 }
 
 .filters-container button {
