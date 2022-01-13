@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import './style/ExplorarBebidasEComidas.css';
 
 function ExplorarComidas() {
@@ -9,19 +10,25 @@ function ExplorarComidas() {
 
   const history = useHistory();
 
+  const { setLoading } = useContext(AppDeReceitasContext);
+
   const handleClick = () => {
     history.push(`/comidas/${idMealRandom}`);
   };
 
   const fetchMealRandom = async () => {
+    setLoading(true);
     const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
     const result = await response.json();
     setIdMealRandom(result.meals[0].idMeal);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchMealRandom();
   }, []);
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="ExplorarComidas-content">
