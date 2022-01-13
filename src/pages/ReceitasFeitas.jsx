@@ -1,7 +1,8 @@
 import clipboardCopy from 'clipboard-copy';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import './style/ReceitasFeitas.css';
 
@@ -11,10 +12,21 @@ function ReceitasFeitas() {
   const [showIsCopy, setShowIsCopy] = useState(false);
   const TWO_SECONDS = 2000;
 
+  const { setLoading } = useContext(AppDeReceitasContext);
+
+  const getDones = async () => {
+    setLoading(true);
+    const doneRecipes = await JSON.parse(localStorage.getItem('doneRecipes'));
+    setAllRecipesDone(doneRecipes);
+    setRecipesFiltered(doneRecipes);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    setAllRecipesDone(JSON.parse(localStorage.getItem('doneRecipes')));
-    setRecipesFiltered(JSON.parse(localStorage.getItem('doneRecipes')));
+    getDones();
   }, []);
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   function copyRecipeLink(pathDetail) {
     const link = `http://localhost:3000${pathDetail}`;
