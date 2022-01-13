@@ -12,13 +12,16 @@ function ComidasPorIngredientes() {
   const TWELVE = 12;
 
   const { setRender,
-    setIsFilterByIngredient } = useContext(AppDeReceitasContext);
+    setIsFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const [ingredients, setIngredients] = useState([]);
 
   const getIngredients = async () => {
+    setLoading(true);
     const ingr = await fetchIngredients('food');
     setIngredients(ingr.meals.slice(0, TWENTY));
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -34,6 +37,8 @@ function ComidasPorIngredientes() {
     await setIsFilterByIngredient(true);
     replace('/comidas');
   };
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="ComidasPorIngredientes-content">
