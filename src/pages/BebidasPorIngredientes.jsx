@@ -12,13 +12,16 @@ function BebidasPorIngredientes() {
   const TWELVE = 12;
 
   const { setRender,
-    setIsFilterByIngredient } = useContext(AppDeReceitasContext);
+    setIsFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const [ingredients, setIngredients] = useState([]);
 
   const getIngredients = async () => {
+    setLoading(true);
     const ingr = await fetchIngredients('drink');
     setIngredients(ingr.drinks.slice(0, TWENTY));
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -34,6 +37,8 @@ function BebidasPorIngredientes() {
     await setIsFilterByIngredient(true);
     replace('/bebidas');
   };
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="BebidasPorIngredientes-content">
