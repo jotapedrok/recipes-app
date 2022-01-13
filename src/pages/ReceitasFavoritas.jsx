@@ -6,12 +6,14 @@ import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 
 function ReceitasFavoritas() {
   const { favoriteRecipes,
-    setFavoriteRecipes } = useContext(AppDeReceitasContext);
+    setFavoriteRecipes, setLoading } = useContext(AppDeReceitasContext);
   const [filter, setFilter] = useState('');
 
   const getFavorites = async () => {
+    setLoading(true);
     const favs = await JSON.parse(localStorage.getItem('favoriteRecipes'));
     setFavoriteRecipes(favs);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -34,6 +36,8 @@ function ReceitasFavoritas() {
   useEffect(() => {
     changeFilter();
   }, [filter]);
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="ReceitasFavoritas-content">
