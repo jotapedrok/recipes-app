@@ -8,6 +8,7 @@ import './style/Explorar.css';
 function Explorar() {
   const { setLoading } = useContext(AppDeReceitasContext);
   useEffect(() => {
+    setLoading(true);
     setLoading(false);
   }, []);
 

@@ -23,6 +23,7 @@ function Bebidas() {
     setLoading } = useContext(AppDeReceitasContext);
 
   const fetchDrinks = async () => {
+    setLoading(true);
     const { drinks } = await fetch(URL).then((response) => response.json());
     await setRender(drinks);
     setTimeout(() => {

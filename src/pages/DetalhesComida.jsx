@@ -25,14 +25,15 @@ function DetalhesComida() {
   const { params } = useRouteMatch();
   const { replace } = useHistory();
 
-  const { recipe, setRecipe } = useContext(AppDeReceitasContext);
+  const { recipe, setRecipe, setLoading } = useContext(AppDeReceitasContext);
 
   const getRecipe = async () => {
+    setLoading(true);
     const recommendedsResult = await fetchDrinkApi('s', '');
     setRecommendeds(recommendedsResult.drinks);
     const recipeObj = await fetchRecipe('food', params.id);
     const recipeResult = recipeObj.meals[0];
-    setRecipe(recipeResult);
+    await setRecipe(recipeResult);
     const ingredients = [];
     for (let i = 1; i <= TWENTY; i += 1) {
       const ingredient = recipeResult[`strIngredient${i}`];
@@ -43,6 +44,7 @@ function DetalhesComida() {
       }
     }
     setRecipeIngredients(ingredients);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -57,6 +59,8 @@ function DetalhesComida() {
       setButtomText('Continuar Receita');
     }
   }, []);
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   const handleClick = (e) => {
     e.preventDefault();

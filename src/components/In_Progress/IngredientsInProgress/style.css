@@ -8,7 +8,7 @@ ul li input:checked + .ingredient-name {
 }
 
 ul li input {
-  display: none;
+  opacity: 0;
 }
 
 ul li input + h4 {

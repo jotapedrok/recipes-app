@@ -24,6 +24,7 @@ function Comidas() {
 
   const URL = `https://www.themealdb.com/api/json/v1/1/${filterUsed}`;
   const fetchMeals = async () => {
+    setLoading(true);
     const { meals } = await fetch(URL).then((response) => response.json());
     await setRender(meals);
     setTimeout(() => {

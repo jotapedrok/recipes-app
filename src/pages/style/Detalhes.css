@@ -9,6 +9,6 @@
   justify-content: center;
   left: 11px;
   line-height: 34px;
-  position: sticky;
+  position: fixed;
   width: 339px;
 }

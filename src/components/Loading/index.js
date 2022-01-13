@@ -41,10 +41,10 @@ export default function Loading() {
   return (
     <div className="loading-content">
       <div className="icons-container">
-        <img className="icon active" src={ drinkIcon } alt="Drink icon" />
+        <img className="icon active" src={ meal } alt="Meal Icon" />
+        <img className="icon" src={ drinkIcon } alt="Drink icon" />
         <img className="icon" src={ chickenLeg } alt="Chicken Leg Icon" />
         <img className="icon" src={ cocktail } alt="Cocktail Icon" />
-        <img className="icon" src={ meal } alt="Meal Icon" />
         <img className="icon" src={ asianFood } alt="Asian Food Icon" />
         <img className="icon" src={ pizza } alt="Pizza Icon" />
         <img className="icon" src={ salad } alt="Salad Icon" />
