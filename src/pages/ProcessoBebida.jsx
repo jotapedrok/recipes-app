@@ -15,12 +15,13 @@ function ProcessoBebida() {
 
   const { params } = useRouteMatch();
 
-  const { recipe, setRecipe } = useContext(AppDeReceitasContext);
+  const { recipe, setRecipe, setLoading } = useContext(AppDeReceitasContext);
 
   const getRecipe = async () => {
+    setLoading(true);
     const recipeObj = await fetchRecipe('drink', params.id);
     const recipeResult = recipeObj.drinks[0];
-    setRecipe(recipeResult);
+    await setRecipe(recipeResult);
     const ingredients = [];
     for (let i = 1; i <= TWENTY; i += 1) {
       const ingredient = recipeResult[`strIngredient${i}`];
@@ -31,11 +32,14 @@ function ProcessoBebida() {
       }
     }
     setRecipeIngredients(ingredients);
+    setLoading(false);
   };
 
   useEffect(() => {
     getRecipe();
   }, []);
+
+  useEffect(() => () => { setLoading(true); }, []);
 
   return (
     <div className="ProcessoComida-content">
