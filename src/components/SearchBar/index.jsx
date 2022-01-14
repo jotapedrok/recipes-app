@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import AppDeReceitasContext from '../../Context/AppDeReceitasContext';
 import { fetchDrinkApi, fetchMealApi } from '../../services/fetchAPI';
+import './style.css';
 
 export default function Search() {
   const { handleRadioChange,
@@ -43,6 +44,7 @@ export default function Search() {
   return (
     <div className="search-content">
       <input
+        className="search-input"
         type="text"
         value={ searchInput }
         data-testid="search-input"
@@ -67,11 +69,14 @@ export default function Search() {
             value="ingredientes"
             name="filter"
             data-testid="ingredient-search-radio"
+            className="radio-input"
+            checked={ filter === 'i' }
           />
           Ingredientes
         </label>
         <label htmlFor="name-filter">
           <input
+            className="radio-input"
             id="name-filter"
             type="radio"
             value="nome"
@@ -87,6 +92,7 @@ export default function Search() {
             value="primeira letra"
             name="filter"
             data-testid="first-letter-search-radio"
+            className="radio-input"
           />
           Primeira letra
         </label>

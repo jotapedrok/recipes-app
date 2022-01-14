@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import useCategoryMeals from '../hooks/useCategoryMeals';
+import './style/Comidas.css';
 
 function Comidas() {
   const searchFilter = 'search.php?s=';
@@ -13,15 +14,22 @@ function Comidas() {
   const [filterUsed, setFilterUsed] = useState(searchFilter);
   const FIVE = 5;
   const TWELVE = 12;
+  const ONE_SECOND = 1000;
 
   const { render,
     setRender,
-    isFilterByIngredient } = useContext(AppDeReceitasContext);
+    isFilterByIngredient,
+    setLoading,
+  } = useContext(AppDeReceitasContext);
 
   const URL = `https://www.themealdb.com/api/json/v1/1/${filterUsed}`;
   const fetchMeals = async () => {
+    setLoading(true);
     const { meals } = await fetch(URL).then((response) => response.json());
-    setRender(meals);
+    await setRender(meals);
+    setTimeout(() => {
+      setLoading(false);
+    }, ONE_SECOND);
   };
 
   useEffect(() => {
@@ -31,34 +39,42 @@ function Comidas() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsed]);
 
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useCategoryMeals(setMealsCategories);
 
   return (
     <div>
       <Header titlePage="Comidas" />
-      {
-        mealsCategories.slice(0, FIVE).map((meal) => (
-          <button
-            data-testid={ `${meal.strCategory}-category-filter` }
-            type="button"
-            onClick={ () => ((filterUsed === searchFilter
+      <div className="categories-container">
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setFilterUsed(searchFilter) }
+        >
+          All
+        </button>
+        {
+          mealsCategories.slice(0, FIVE).map((meal) => (
+            <button
+              data-testid={ `${meal.strCategory}-category-filter` }
+              type="button"
+              onClick={ () => ((filterUsed === searchFilter
               || filterUsed !== `filter.php?c=${meal.strCategory}`)
-              ? setFilterUsed(`filter.php?c=${meal.strCategory}`)
-              : setFilterUsed(searchFilter)) }
-            key={ meal.strCategory }
-          >
-            {meal.strCategory}
-          </button>
-        ))
-      }
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => setFilterUsed(searchFilter) }
-      >
-        All
-      </button>
-      {render
+                ? setFilterUsed(`filter.php?c=${meal.strCategory}`)
+                : setFilterUsed(searchFilter)) }
+              key={ meal.strCategory }
+            >
+              {meal.strCategory}
+            </button>
+          ))
+        }
+      </div>
+      <div className="cards-container">
+        {render
         && render.map((e, i) => {
           if (i < TWELVE) {
             return (
@@ -75,6 +91,7 @@ function Comidas() {
           }
           return ('');
         })}
+      </div>
       <Footer />
     </div>
   );

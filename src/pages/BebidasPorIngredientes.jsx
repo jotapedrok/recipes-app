@@ -5,23 +5,28 @@ import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import { fetchDrinkApi, fetchIngredients } from '../services/fetchAPI';
+import './style/ExplorarPorIngredientes.css';
 
 function BebidasPorIngredientes() {
   const TWENTY = 20;
   const TWELVE = 12;
 
   const { setRender,
-    setIsFilterByIngredient } = useContext(AppDeReceitasContext);
+    setIsFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const [ingredients, setIngredients] = useState([]);
 
   const getIngredients = async () => {
+    setLoading(true);
     const ingr = await fetchIngredients('drink');
     setIngredients(ingr.drinks.slice(0, TWENTY));
+    setLoading(false);
   };
 
   useEffect(() => {
     getIngredients();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { replace } = useHistory();
@@ -34,10 +39,16 @@ function BebidasPorIngredientes() {
     replace('/bebidas');
   };
 
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="BebidasPorIngredientes-content">
       <Header showSearch={ false } titlePage="Explorar Ingredientes" />
-      { ingredients
+      <div className="ingredients-container">
+        { ingredients
         && ingredients.map((ingredient, i) => {
           const ingredientName = ingredient.strIngredient1;
           if (i < TWELVE) {
@@ -57,6 +68,7 @@ function BebidasPorIngredientes() {
           }
           return ('');
         }) }
+      </div>
       <Footer />
     </div>
   );

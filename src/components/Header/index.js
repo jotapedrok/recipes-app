@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar';
+import './style.css';
 
 function Header({ showSearch = true, titlePage }) {
   const [inputSearch, setInputSearch] = useState(false);
@@ -13,17 +14,18 @@ function Header({ showSearch = true, titlePage }) {
   }
 
   return (
-    <div className="header-content">
-      <header>
+    <div className="header-container">
+      <header className="header-content">
         <Link
           data-testid="profile-top-btn"
           to="/perfil"
           src={ profileIcon }
+          className="profile-ico"
         >
           <img src={ profileIcon } alt="icon-profile" />
         </Link>
         <h1 data-testid="page-title">{ titlePage }</h1>
-        { showSearch && (
+        { showSearch ? (
           <button
             data-testid="search-top-btn"
             type="button"
@@ -32,7 +34,8 @@ function Header({ showSearch = true, titlePage }) {
           >
             <img src={ searchIcon } alt="icon-search" />
           </button>
-        )}
+        )
+          : <div className="space"> </div>}
       </header>
       { inputSearch && <SearchBar /> }
     </div>

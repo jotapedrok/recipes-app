@@ -16,18 +16,19 @@ function DetalhesBebida() {
   const [buttomText, setButtomText] = useState('Iniciar Receita');
   const [recipeIngredients, setRecipeIngredients] = useState([]);
 
-  const { recipe, setRecipe } = useContext(AppDeReceitasContext);
+  const { recipe, setRecipe, setLoading } = useContext(AppDeReceitasContext);
 
   const { params } = useRouteMatch();
   const { replace } = useHistory();
 
   const getRecipe = async () => {
+    setLoading(true);
     const { id } = params;
     const recommendedsResult = await fetchMealApi('s', '');
     setRecommendeds(recommendedsResult.meals);
     const recipeObj = await fetchRecipe('drink', id);
     const recipeResult = recipeObj.drinks[0];
-    setRecipe(recipeResult);
+    await setRecipe(recipeResult);
     const ingredients = [];
     for (let i = 1; i <= TWENTY; i += 1) {
       const ingredient = recipeResult[`strIngredient${i}`];
@@ -38,12 +39,14 @@ function DetalhesBebida() {
       }
     }
     setRecipeIngredients(ingredients);
+    setLoading(false);
   };
   const donedRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   useEffect(() => {
     getRecipe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -56,7 +59,13 @@ function DetalhesBebida() {
       && inProgressRecipes.cocktails[params.id]) {
       setButtomText('Continuar Receita');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donedRecipes, inProgressRecipes]);
+
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -77,17 +86,19 @@ function DetalhesBebida() {
     <div className="details-drink-container">
       {recipe !== {} && (
         <div className="details-food-content">
-          <HeaderRecipe
-            typeRecipe={ ['Drink', 'bebida'] }
-            image={ recipe.strDrinkThumb }
-            title={ recipe.strDrink }
-            subtitle={ `${recipe.strCategory} - ${recipe.strAlcoholic}` }
-          />
-          <Ingredients
-            ingredients={ recipeIngredients }
-          />
-          <Instructions instructionsText={ recipe.strInstructions } />
-          <Recommended gender="meals" recipes={ recommendeds } />
+          <div className="recipe-content">
+            <HeaderRecipe
+              typeRecipe={ ['Drink', 'bebida'] }
+              image={ recipe.strDrinkThumb }
+              title={ recipe.strDrink }
+              subtitle={ `${recipe.strCategory} - ${recipe.strAlcoholic}` }
+            />
+            <Ingredients
+              ingredients={ recipeIngredients }
+            />
+            <Instructions instructionsText={ recipe.strInstructions } />
+            <Recommended gender="meals" recipes={ recommendeds } />
+          </div>
           { showButton && (
             <button
               className="btn-start-recipe"

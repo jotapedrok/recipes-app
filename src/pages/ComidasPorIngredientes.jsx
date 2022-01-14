@@ -5,23 +5,28 @@ import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import { fetchIngredients, fetchMealApi } from '../services/fetchAPI';
+import './style/ExplorarPorIngredientes.css';
 
 function ComidasPorIngredientes() {
   const TWENTY = 20;
   const TWELVE = 12;
 
   const { setRender,
-    setIsFilterByIngredient } = useContext(AppDeReceitasContext);
+    setIsFilterByIngredient,
+    setLoading } = useContext(AppDeReceitasContext);
 
   const [ingredients, setIngredients] = useState([]);
 
   const getIngredients = async () => {
+    setLoading(true);
     const ingr = await fetchIngredients('food');
     setIngredients(ingr.meals.slice(0, TWENTY));
+    setLoading(false);
   };
 
   useEffect(() => {
     getIngredients();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { replace } = useHistory();
@@ -34,10 +39,16 @@ function ComidasPorIngredientes() {
     replace('/comidas');
   };
 
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="ComidasPorIngredientes-content">
       <Header showSearch={ false } titlePage="Explorar Ingredientes" />
-      { ingredients
+      <div className="ingredients-container">
+        { ingredients
         && ingredients.map((ingredient, i) => {
           const ingredientName = ingredient.strIngredient;
           if (i < TWELVE) {
@@ -57,6 +68,7 @@ function ComidasPorIngredientes() {
           }
           return ('');
         }) }
+      </div>
       <Footer />
     </div>
   );

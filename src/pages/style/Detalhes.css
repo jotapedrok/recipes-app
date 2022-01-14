@@ -1,6 +1,18 @@
 .btn-start-recipe {
+  align-items: center;
   background-color: #1ab61a;
+  border: none;
   bottom: 0;
+  display: flex;
+  font-size: 29px;
+  height: 76px;
+  justify-content: center;
+  left: 11px;
+  line-height: 34px;
   position: fixed;
-  width: 90%;
+  width: 339px;
+}
+
+.recipe-content {
+  margin-bottom: 85px;
 }

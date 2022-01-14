@@ -1,3 +1,41 @@
+.ingredients-container h2 {
+  font-size: 26px;
+  line-height: 30px;
+}
+
 ul li input:checked + .ingredient-name {
   text-decoration: line-through;
+}
+
+ul li input {
+  opacity: 0;
+}
+
+ul li input + h4 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  margin: 0;
+}
+
+
+ul li input + h4:before {
+  background-color: #c4c4c4;
+  content: '';
+  display: inline-block;
+  height: 22px;
+  margin-bottom: 4px;
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 22px;
+}
+
+ul li input:checked + h4:before {
+  background-color: #c4c4c4;
+  background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd'%3E%3Cpath d='M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z'/%3E%3C/svg%3E");
+  height: 22px;
+  margin-bottom: 4px;
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 22px;
 }

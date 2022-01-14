@@ -31,6 +31,7 @@ export default function LabelIngredient({
 
   useEffect(() => {
     gatInProgressRecipes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = ({ target: { value } }) => {

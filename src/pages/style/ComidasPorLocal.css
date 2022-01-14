@@ -1,0 +1,14 @@
+.select-container {
+  display: flex;
+}
+
+.area-select {
+  appearance: none;
+  background: #ececec url('../../images/blackArrow.svg') 95.5% 50% no-repeat;
+  font-size: 30px;
+  height: 47px;
+  line-height: 35px;
+  margin: 17px auto 15px;
+  padding: 6px 9px;
+  width: 337px;
+}

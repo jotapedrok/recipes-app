@@ -91,7 +91,7 @@ export default function Buttons({ typeRecipe, isFavorite, setFavorite }) {
             />
           </button>
         )}
-      { showIsCopy && <p>Link copiado!</p> }
+      { showIsCopy && <p className="copied-link">Link copiado!</p> }
     </div>
   );
 }
