@@ -25,14 +25,15 @@ function DetalhesComida() {
   const { params } = useRouteMatch();
   const { replace } = useHistory();
 
-  const { recipe, setRecipe } = useContext(AppDeReceitasContext);
+  const { recipe, setRecipe, setLoading } = useContext(AppDeReceitasContext);
 
   const getRecipe = async () => {
+    setLoading(true);
     const recommendedsResult = await fetchDrinkApi('s', '');
     setRecommendeds(recommendedsResult.drinks);
     const recipeObj = await fetchRecipe('food', params.id);
     const recipeResult = recipeObj.meals[0];
-    setRecipe(recipeResult);
+    await setRecipe(recipeResult);
     const ingredients = [];
     for (let i = 1; i <= TWENTY; i += 1) {
       const ingredient = recipeResult[`strIngredient${i}`];
@@ -43,6 +44,7 @@ function DetalhesComida() {
       }
     }
     setRecipeIngredients(ingredients);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -56,6 +58,12 @@ function DetalhesComida() {
       && inProgressRecipes.meals[params.id]) {
       setButtomText('Continuar Receita');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (e) => {
@@ -77,18 +85,20 @@ function DetalhesComida() {
     <div className="DetalhesComida-container">
       {recipe !== {} && (
         <div className="details-food-content">
-          <HeaderRecipe
-            typeRecipe={ ['Meal', 'comida'] }
-            image={ recipe.strMealThumb }
-            title={ recipe.strMeal }
-            subtitle={ recipe.strCategory }
-          />
-          <Ingredients
-            ingredients={ recipeIngredients }
-          />
-          <Instructions instructionsText={ recipe.strInstructions } />
-          <Video link={ recipe.strYoutube } />
-          <Recommended gender="drinks" recipes={ recommendeds } />
+          <div className="recipe-content">
+            <HeaderRecipe
+              typeRecipe={ ['Meal', 'comida'] }
+              image={ recipe.strMealThumb }
+              title={ recipe.strMeal }
+              subtitle={ recipe.strCategory }
+            />
+            <Ingredients
+              ingredients={ recipeIngredients }
+            />
+            <Instructions instructionsText={ recipe.strInstructions } />
+            <Video link={ recipe.strYoutube } />
+            <Recommended gender="drinks" recipes={ recommendeds } />
+          </div>
           { showButton && (
             <button
               className="btn-start-recipe"

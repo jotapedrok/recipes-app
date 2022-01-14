@@ -22,27 +22,29 @@ export default function FavoriteCard({ url,
           />
         </Link>
       </div>
-      <div className="favorite-card-header">
-        <Link to={ `/${type}s/${id}` }>
-          <h5
-            data-testid={ `${index}-horizontal-top-text` }
-            className="favorite-card-category"
-          >
-            { subtitle }
-          </h5>
-          <h3
-            data-testid={ `${index}-horizontal-name` }
-            className="favorite-card-category"
-          >
-            { name }
-          </h3>
-        </Link>
+      <div className="favorite-card-content">
+        <div className="favorite-card-header">
+          <Link to={ `/${type}s/${id}` }>
+            <h5
+              data-testid={ `${index}-horizontal-top-text` }
+              className="favorite-card-category"
+            >
+              { subtitle }
+            </h5>
+            <h3
+              data-testid={ `${index}-horizontal-name` }
+              className="favorite-card-category"
+            >
+              { name }
+            </h3>
+          </Link>
+        </div>
+        <Buttons
+          index={ index }
+          id={ id }
+          type={ type }
+        />
       </div>
-      <Buttons
-        index={ index }
-        id={ id }
-        type={ type }
-      />
     </div>
   );
 }

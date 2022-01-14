@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ResultCard from '../../ResultCard';
 import './style.css';
 
@@ -10,16 +11,19 @@ export default function Recommended({ recipes, gender }) {
       <h2>Recomendadas</h2>
       <div className="recommended-content">
         {recipes.map((e, i) => {
+          const id = gender === 'meals' ? e.idMeal : e.idDrink;
+          const type = gender === 'meals' ? 'comidas' : 'bebidas';
           if (i < SIX) {
             return (
-              <ResultCard
-                type="recomendation"
-                id={ gender === 'meals' ? e.idMeal : e.idDrink }
-                index={ i }
-                key={ i }
-                image={ gender === 'meals' ? e.strMealThumb : e.strDrinkThumb }
-                name={ gender === 'meals' ? e.strMeal : e.strDrink }
-              />
+              <Link key={ i } to={ `/${type}/${id}` }>
+                <ResultCard
+                  type="recomendation"
+                  id={ id }
+                  index={ i }
+                  image={ gender === 'meals' ? e.strMealThumb : e.strDrinkThumb }
+                  name={ gender === 'meals' ? e.strMeal : e.strDrink }
+                />
+              </Link>
             );
           }
           return ('');

@@ -6,16 +6,19 @@ import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 
 function ReceitasFavoritas() {
   const { favoriteRecipes,
-    setFavoriteRecipes } = useContext(AppDeReceitasContext);
+    setFavoriteRecipes, setLoading } = useContext(AppDeReceitasContext);
   const [filter, setFilter] = useState('');
 
   const getFavorites = async () => {
+    setLoading(true);
     const favs = await JSON.parse(localStorage.getItem('favoriteRecipes'));
     setFavoriteRecipes(favs);
+    setLoading(false);
   };
 
   useEffect(() => {
     getFavorites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const changeFilter = async () => {
@@ -33,7 +36,13 @@ function ReceitasFavoritas() {
 
   useEffect(() => {
     changeFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="ReceitasFavoritas-content">

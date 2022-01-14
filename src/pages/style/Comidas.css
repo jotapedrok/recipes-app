@@ -1,0 +1,25 @@
+.categories-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 17px 17px 10px;
+}
+
+.categories-container button {
+  background-color: #c4c4c4;
+  border: none;
+  height: 28px;
+  margin-bottom: 11px;
+  padding: 0 14px;
+  text-align: left;
+  width: 105px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 338px;
+}

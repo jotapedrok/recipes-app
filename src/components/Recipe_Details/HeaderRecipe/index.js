@@ -20,6 +20,7 @@ export default function HeaderRecipe({ image, title, subtitle, typeRecipe }) {
 
   useEffect(() => {
     testFavorite();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -31,16 +32,18 @@ export default function HeaderRecipe({ image, title, subtitle, typeRecipe }) {
         alt={ title }
       />
       <div className="header-recipe-content">
-        <h2
-          data-testid="recipe-title"
-        >
-          { title }
-        </h2>
-        <h4
-          data-testid="recipe-category"
-        >
-          { subtitle }
-        </h4>
+        <div className="recipe-header-text">
+          <h2
+            data-testid="recipe-title"
+          >
+            { title }
+          </h2>
+          <h4
+            data-testid="recipe-category"
+          >
+            { subtitle }
+          </h4>
+        </div>
         <Buttons
           typeRecipe={ typeRecipe }
           isFavorite={ isFavorite }

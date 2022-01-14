@@ -5,13 +5,14 @@ import Header from '../components/Header';
 import ResultCard from '../components/ResultCard';
 import AppDeReceitasContext from '../Context/AppDeReceitasContext';
 import { fetchAreas, fetchMealApi } from '../services/fetchAPI';
+import './style/ComidasPorLocal.css';
 
 function ComidasPorLocal() {
   const TWELVE = 12;
 
   const [areas, setAreas] = useState([]);
 
-  const { setRender, render } = useContext(AppDeReceitasContext);
+  const { setRender, render, setLoading } = useContext(AppDeReceitasContext);
 
   const getAreas = async () => {
     const ingr = await fetchAreas();
@@ -23,9 +24,16 @@ function ComidasPorLocal() {
     setRender(meals);
   };
 
+  const starterPage = async () => {
+    setLoading(true);
+    await getAreas();
+    await getRecipes('s', '');
+    setLoading(false);
+  };
+
   useEffect(() => {
-    getAreas();
-    getRecipes('s', '');
+    starterPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
@@ -38,16 +46,23 @@ function ComidasPorLocal() {
     }
   };
 
+  useEffect(() => () => {
+    setLoading(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="ComidasPorLocal-content">
       <Header titlePage="Explorar Origem" />
-      <select
-        name="areas"
-        id="areas"
-        data-testid="explore-by-area-dropdown"
-        onChange={ handleChange }
-      >
-        {areas
+      <div className="select-container">
+        <select
+          name="areas"
+          id="areas"
+          data-testid="explore-by-area-dropdown"
+          onChange={ handleChange }
+          className="area-select"
+        >
+          {areas
       && areas.map((area, i) => (
         <option
           key={ i }
@@ -57,14 +72,16 @@ function ComidasPorLocal() {
           { area.strArea }
         </option>
       ))}
-        <option
-          data-testid="All-option"
-          value="All"
-        >
-          All
-        </option>
-      </select>
-      {render
+          <option
+            data-testid="All-option"
+            value="All"
+          >
+            All
+          </option>
+        </select>
+      </div>
+      <div className="cards-container">
+        {render
         && render.map((e, i) => {
           if (i < TWELVE) {
             return (
@@ -81,6 +98,7 @@ function ComidasPorLocal() {
           }
           return ('');
         })}
+      </div>
       <Footer />
     </div>
   );

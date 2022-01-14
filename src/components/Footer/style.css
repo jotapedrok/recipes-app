@@ -1,8 +1,15 @@
 .footer-content {
-  background-color: aliceblue;
-  border: 2px solid black;
+  align-items: center;
+  background-color: #c4c4c4;
   bottom: 0;
+  display: flex;
+  justify-content: space-between;
   position: fixed;
-  text-align: center;
   width: 100%;
+}
+
+.footer-content img {
+  height: 40px;
+  margin: 9px 18px;
+  width: 40px;
 }
