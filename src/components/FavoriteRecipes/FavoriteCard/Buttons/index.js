@@ -63,12 +63,12 @@ export default function Buttons({ index, id, type }) {
 
 Buttons.propTypes = {
   index: PropTypes.number,
-  id: PropTypes.number,
+  id: PropTypes.string,
   type: PropTypes.string,
 };
 
 Buttons.defaultProps = {
   index: 0,
-  id: 0,
+  id: '',
   type: '',
 };

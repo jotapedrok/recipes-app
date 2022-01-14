@@ -54,7 +54,7 @@ FavoriteCard.propTypes = {
   name: PropTypes.string,
   subtitle: PropTypes.string,
   index: PropTypes.number,
-  id: PropTypes.number,
+  id: PropTypes.string,
   type: PropTypes.string,
 };
 
@@ -63,6 +63,6 @@ FavoriteCard.defaultProps = {
   name: '',
   subtitle: '',
   index: 0,
-  id: 0,
+  id: '',
   type: '',
 };
