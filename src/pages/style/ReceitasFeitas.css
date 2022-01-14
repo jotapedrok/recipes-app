@@ -39,7 +39,7 @@
 }
 
 .done-recipes-buttons button {
-  background-color: #c4c4c4;
+  background-color: transparent;
   border: none;
   font-size: 18px;
   height: 45px;
