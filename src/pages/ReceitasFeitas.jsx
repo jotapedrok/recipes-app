@@ -33,8 +33,8 @@ function ReceitasFeitas() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function copyRecipeLink(pathDetail) {
-    const link = `http://localhost:3000${pathDetail}`;
+  function copyRecipeLink() {
+    const link = window.location.href;
     clipboardCopy(link);
     setShowIsCopy(true);
     setTimeout(() => setShowIsCopy(false), TWO_SECONDS);
@@ -114,7 +114,7 @@ function ReceitasFeitas() {
                 <button
                   type="button"
                   data-testid="share-btn"
-                  onClick={ () => copyRecipeLink(pathDetail) }
+                  onClick={ () => copyRecipeLink() }
                   src={ shareIcon }
                 >
                   <img

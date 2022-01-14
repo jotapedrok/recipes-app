@@ -5,7 +5,7 @@ import shareIcon from '../../../../images/shareIcon.svg';
 import blackHeartIcon from '../../../../images/blackHeartIcon.svg';
 import AppDeReceitasContext from '../../../../Context/AppDeReceitasContext';
 
-export default function Buttons({ index, id, type }) {
+export default function Buttons({ index, id }) {
   const TWO_SECONDS = 2000;
   const { favoriteRecipes,
     setFavoriteRecipes } = useContext(AppDeReceitasContext);
@@ -15,7 +15,7 @@ export default function Buttons({ index, id, type }) {
 
   const shareButton = (e) => {
     e.preventDefault();
-    const link = `http://localhost:3000/${type}s/${id}`;
+    const link = window.location.href;
     clipboardCopy(link);
     setShowIsCopy(true);
     timeOutRef.current = setTimeout(() => setShowIsCopy(false), TWO_SECONDS);
@@ -64,11 +64,9 @@ export default function Buttons({ index, id, type }) {
 Buttons.propTypes = {
   index: PropTypes.number,
   id: PropTypes.number,
-  type: PropTypes.string,
 };
 
 Buttons.defaultProps = {
   index: 0,
   id: 0,
-  type: '',
 };
