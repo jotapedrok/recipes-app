@@ -37,6 +37,7 @@
 }
 
 .favorite-card-buttons button {
+  background-color: transparent;
   border: none;
 }
 
