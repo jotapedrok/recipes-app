@@ -33,8 +33,8 @@ function ReceitasFeitas() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function copyRecipeLink() {
-    const link = window.location.href;
+  function copyRecipeLink(pathDetail) {
+    const link = `${window.location.origin}/${pathDetail}`;
     clipboardCopy(link);
     setShowIsCopy(true);
     setTimeout(() => setShowIsCopy(false), TWO_SECONDS);
@@ -114,7 +114,7 @@ function ReceitasFeitas() {
                 <button
                   type="button"
                   data-testid="share-btn"
-                  onClick={ () => copyRecipeLink() }
+                  onClick={ () => copyRecipeLink(pathDetail) }
                   src={ shareIcon }
                 >
                   <img
@@ -123,7 +123,7 @@ function ReceitasFeitas() {
                     data-testid={ `${index}-horizontal-share-btn` }
                   />
                 </button>
-                { showIsCopy && <p>Link copiado!</p> }
+                { showIsCopy && <p className="link-copied">Link copiado!</p> }
               </div>
               <div className="done-recipe-date">
                 <h3

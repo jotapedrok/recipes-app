@@ -39,7 +39,7 @@
 }
 
 .done-recipes-buttons button {
-  background-color: transparent;
+  background-color: #c4c4c4;
   border: none;
   font-size: 18px;
   height: 45px;
@@ -73,7 +73,7 @@
 }
 
 .done-recipes-button button {
-  background-color: #f8eded;
+  background-color: transparent;
   border: none;
 }
 
@@ -83,8 +83,18 @@
 }
 
 .done-recipes-button img {
+  background-color: transparent;
   height: 22px;
   width: 22px;
+}
+
+.link-copied {
+  background-color: #d3cfcf;
+  border-radius: 15px;
+  width: 107px;
+  padding: 5px;
+  position: absolute;
+  right: -15px;
 }
 
 .tag {
