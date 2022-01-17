@@ -15,7 +15,7 @@ export default function Buttons({ index, id, type }) {
 
   const shareButton = (e) => {
     e.preventDefault();
-    const link = `${window.location.origin}/${type}s/${id}`;
+    const link = `${window.location.origin}${type}s/${id}`;
     clipboardCopy(link);
     setShowIsCopy(true);
     timeOutRef.current = setTimeout(() => setShowIsCopy(false), TWO_SECONDS);

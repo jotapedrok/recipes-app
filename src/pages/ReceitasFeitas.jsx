@@ -34,7 +34,7 @@ function ReceitasFeitas() {
   }, []);
 
   function copyRecipeLink(pathDetail) {
-    const link = `${window.location.origin}/${pathDetail}`;
+    const link = `${window.location.origin}${pathDetail}`;
     clipboardCopy(link);
     setShowIsCopy(true);
     setTimeout(() => setShowIsCopy(false), TWO_SECONDS);
